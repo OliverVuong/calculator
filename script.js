@@ -29,11 +29,14 @@ function operate(operator = 'add', a = 0, b = 0){
 ////////////////////////////////////////
 
 const display = document.querySelector('.display');
-let displayStr = "";
-let runningTotal = undefined;
-let operator = undefined;
-let startNewNumber = false;
-let hasOperatorSelected = false;
+let displayStr;
+let runningTotal;
+let operator;
+let startNewNumber;
+let hasOperatorSelected;
+
+resetHelpers();
+resetDisplay();
 
 const numberBtns = document.querySelectorAll('.number');
 numberBtns.forEach(button => {
@@ -84,6 +87,6 @@ function resetHelpers(){
 }
 
 function resetDisplay(){
-    runningTotal = 0;
-    display.textContent = runningTotal;
+    displayStr = "0";
+    display.textContent = displayStr;
 }
