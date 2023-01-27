@@ -33,6 +33,7 @@ let displayStr = "";
 let runningTotal = undefined;
 let operator = undefined;
 let startNewNumber = false;
+let hasOperatorSelected = false;
 
 const numberBtns = document.querySelectorAll('.number');
 numberBtns.forEach(button => {
@@ -43,6 +44,7 @@ numberBtns.forEach(button => {
         }
         displayStr += button.id;
         display.textContent = displayStr;
+        hasOperatorSelected = false;
     });
 });
 
@@ -61,20 +63,27 @@ operatorBtns.forEach(button => {
             runningTotal = Number(displayStr);
         }
         operator = button.classList[0];
+        hasOperatorSelected = true;
     })
 })
 
 const equalsBtn = document.querySelector('.equals');
 equalsBtn.addEventListener('click', () => {
     display.textContent = operate(operator, runningTotal, Number(displayStr));
-    reset();
+    resetHelpers();
 })
 
 ///////////////////////////////////////////////
 
 //resets helper variables to ready for a new equation
-function reset(){
+function resetHelpers(){
     startNewNumber = true;
     operator = undefined;
     runningTotal = 0;
+    hasOperatorSelected = false;
+}
+
+function resetDisplay(){
+    runningTotal = 0;
+    display.textContent = runningTotal;
 }
