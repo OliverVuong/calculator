@@ -45,3 +45,22 @@ numberBtns.forEach(button => {
         display.textContent = displayStr;
     });
 });
+
+
+/////////////////////////////////////////////
+
+const operatorBtns = document.querySelectorAll('.operator');
+operatorBtns.forEach(button => {
+    button.addEventListener('click', () => {
+        startNewNumber = true;
+        runningTotal = Number(displayStr);
+        operator = button.classList[0];
+    })
+})
+
+const equalsBtn = document.querySelector('.equals');
+equalsBtn.addEventListener('click', () => {
+    startNewNumber = true;
+    display.textContent = operate(operator, runningTotal, Number(displayStr));;
+    runningTotal = 0;
+})
