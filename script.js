@@ -53,14 +53,28 @@ const operatorBtns = document.querySelectorAll('.operator');
 operatorBtns.forEach(button => {
     button.addEventListener('click', () => {
         startNewNumber = true;
-        runningTotal = Number(displayStr);
+
+        if(runningTotal){
+            runningTotal = operate(operator, runningTotal, Number(displayStr));
+            display.textContent = runningTotal;    
+        } else {
+            runningTotal = Number(displayStr);
+        }
         operator = button.classList[0];
     })
 })
 
 const equalsBtn = document.querySelector('.equals');
 equalsBtn.addEventListener('click', () => {
-    startNewNumber = true;
-    display.textContent = operate(operator, runningTotal, Number(displayStr));;
-    runningTotal = 0;
+    display.textContent = operate(operator, runningTotal, Number(displayStr));
+    reset();
 })
+
+///////////////////////////////////////////////
+
+//resets helper variables to ready for a new equation
+function reset(){
+    startNewNumber = true;
+    operator = undefined;
+    runningTotal = 0;
+}
