@@ -30,7 +30,7 @@ function operate(operator = 'add', a = 0, b = 0){
 
 const display = document.querySelector('.display');
 let displayStr;
-let displayVal;
+let currentVal;
 let runningTotal;
 let operator;
 let startNewNumber;
@@ -46,13 +46,15 @@ resetDisplay();
 const numberBtns = document.querySelectorAll('.number');
 numberBtns.forEach(button => {
     button.addEventListener('click', () => {
+        //start of a new number
         if(lastInput === OPERATOR){
-            //start of a new number
             displayStr = "";
             startNewNumber = false;
+            currentVal = 0;
         }
         displayStr += button.id;
-        display.textContent = displayStr;
+        currentVal = (Number(currentVal) * 10) + Number(button.id);
+        display.textContent = currentVal;
         hasOperatorSelected = false;
         lastInput = NUMBER;
     });
@@ -86,7 +88,7 @@ equalsBtn.addEventListener('click', () => {
 
 //resets helper variables to ready for a new equation
 function resetHelpers(){
-    displayVal = 0;
+    currentVal = 0;
     startNewNumber = true;
     operator = undefined;
     runningTotal = 0;
