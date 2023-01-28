@@ -30,10 +30,15 @@ function operate(operator = 'add', a = 0, b = 0){
 
 const display = document.querySelector('.display');
 let displayStr;
+let displayVal;
 let runningTotal;
 let operator;
 let startNewNumber;
 let hasOperatorSelected;
+
+const OPERATOR = "OPERATOR";
+const NUMBER = "NUMBER"
+let lastInput = NUMBER;
 
 resetHelpers();
 resetDisplay();
@@ -41,13 +46,15 @@ resetDisplay();
 const numberBtns = document.querySelectorAll('.number');
 numberBtns.forEach(button => {
     button.addEventListener('click', () => {
-        if(startNewNumber){
+        if(lastInput === OPERATOR){
+            //start of a new number
             displayStr = "";
             startNewNumber = false;
         }
         displayStr += button.id;
         display.textContent = displayStr;
         hasOperatorSelected = false;
+        lastInput = NUMBER;
     });
 });
 
@@ -57,7 +64,6 @@ numberBtns.forEach(button => {
 const operatorBtns = document.querySelectorAll('.operator');
 operatorBtns.forEach(button => {
     button.addEventListener('click', () => {
-        startNewNumber = true;
 
         if(runningTotal){
             runningTotal = operate(operator, runningTotal, Number(displayStr));
@@ -66,7 +72,7 @@ operatorBtns.forEach(button => {
             runningTotal = Number(displayStr);
         }
         operator = button.classList[0];
-        hasOperatorSelected = true;
+        lastInput = OPERATOR;
     })
 })
 
@@ -80,13 +86,22 @@ equalsBtn.addEventListener('click', () => {
 
 //resets helper variables to ready for a new equation
 function resetHelpers(){
+    displayVal = 0;
     startNewNumber = true;
     operator = undefined;
     runningTotal = 0;
     hasOperatorSelected = false;
+    lastInput = NUMBER;
 }
 
 function resetDisplay(){
     displayStr = "0";
     display.textContent = displayStr;
 }
+
+/*
+if display === 0 &&& clickBtn0
+    do nothing
+
+
+*/
