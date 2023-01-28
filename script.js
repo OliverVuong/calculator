@@ -93,6 +93,15 @@ equalsBtn.addEventListener('click', () => {
 
 ///////////////////////////////////////////////
 
+const clearBtn = document.querySelector('.clear');
+clearBtn.addEventListener('click', ()=> {
+    currentVal = 0;
+    resetHelpers();
+    resetDisplay();
+})
+
+///////////////////////////////////////////////
+
 //resets helper variables to ready for a new equation
 function resetHelpers(){
     //currentVal = 0;
