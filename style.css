@@ -19,12 +19,12 @@ body {
     flex-direction: column;
     border-radius: 10px;
     gap: 10px;
+    padding: 10px 10px;
 }
 
 .row {
     flex: 1 1 0;
     display: flex;
-    padding: 0 5px;
     gap: 10px;
 }
 
@@ -54,18 +54,15 @@ button {
 }
 
 .toprow {
-    /*justify-content: flex-end;*/
-    /*display: flex;*/
-    align-items: center;
+    display: flex;
 }
 
 .display {
     background-color: lightgray;
-    border: 2px black solid;
     border-radius: 10px;
     flex: 1;
-    /*text-align: right;*/
     padding: 0px 5px;
     display: flex;
     justify-content: end;
+    align-items: center;
 }
